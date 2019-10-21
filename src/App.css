@@ -11,6 +11,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding-top: 100px;
 }
 
 .App-link {
@@ -21,4 +22,8 @@ span {
   font-family: Orbitron, serif;
   font-size: 16px;
   font-size: 10vw;
+}
+
+.launch-label {
+  margin-top: 600px;
 }
