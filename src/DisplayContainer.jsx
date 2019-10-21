@@ -10,10 +10,19 @@ export default class DisplayContainer extends React.Component {
   render() {
     const countDownTime = Date.now() + (60 * this.state.inputMinutes * 1000);
 
+    const completed = countDownTime <= Date.now() ? "timer-done" : "timer";
+
+    const label = completed === "timer" ?
+      "TIME TO LAUNCH"
+      :
+      "BLASTOFF";
+
     return (
       <React.Fragment>
-        <Countdown date={countDownTime} classname="timer" daysInHours />
-        {<h3>TIME TO LAUNCH</h3>}
+        <div className={completed} >
+          <Countdown date={countDownTime} daysInHours />
+          <h4>{label}</h4>
+        </div>
         <MinuteInput onUpdate={this.handleUpdate} />
       </React.Fragment>
     )
