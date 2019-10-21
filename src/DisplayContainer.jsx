@@ -1,28 +1,30 @@
 import React from "react";
-import Countdown from "react-countdown-now";
 import MinuteInput from "./MinuteInput";
+import CountDownDisplay from "./CountdownDisplay";
 
 export default class DisplayContainer extends React.Component {
   state = {
     inputMinutes: 5,
+    complete: false,
   };
 
   render() {
-    const countDownTime = Date.now() + (60 * this.state.inputMinutes * 1000);
-
-    const completed = countDownTime <= Date.now() ? "timer-done" : "timer";
-
-    const label = completed === "timer" ?
-      "TIME TO LAUNCH"
+    const completedClass = this.state.complete === true ? "timer-done" : "timer";
+    const label = this.state.complete === true ? "BLASTOFF" : null;
+    const countDownTime = this.state.complete === true ?
+      Date.now()
       :
-      "BLASTOFF";
+      Date.now() + (60 * this.state.inputMinutes * 1000);
+
 
     return (
       <React.Fragment>
-        <div className={completed} >
-          <Countdown date={countDownTime} daysInHours />
-          <h4>{label}</h4>
-        </div>
+        <CountDownDisplay
+          class={completedClass}
+          label={label}
+          onCompletion={this.handleCompletion}
+          time={countDownTime}
+        />
         <MinuteInput onUpdate={this.handleUpdate} />
       </React.Fragment>
     )
@@ -31,5 +33,9 @@ export default class DisplayContainer extends React.Component {
   handleUpdate = (e) => {
     const minutes = Number.parseInt(e.currentTarget.value);
     this.setState({ inputMinutes: minutes })
-  }
+  };
+
+  handleCompletion = () => {
+    this.setState({ complete: true })
+  };
 };

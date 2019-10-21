@@ -18,18 +18,18 @@
 }
 
 .timer {
-  padding-top: 100px;
+  padding-top: 200px;
   font-family: Orbitron, serif;
   font-size: 16px;
-  font-size: 10vw;
+  font-size: 12vw;
 }
 
 .timer-done {
-  padding-top: 100px;
+  padding-top: 200px;
   font-family: Orbitron, serif;
   color: red;
   font-size: 16px;
-  font-size: 10vw;
+  font-size: 12vw;
 }
 
 .launch-label {

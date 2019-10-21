@@ -1,6 +1,3 @@
-// timer input
-// set a 1 minutes wait
-// then reset timer
 import _ from "lodash";
 import React from "react";
 
