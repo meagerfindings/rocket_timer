@@ -58,7 +58,16 @@ export default class DisplayContainer extends React.Component {
   };
 
   renderSettingsIcon = () => {
-    return <div className="settings-icon" onClick={this.toggleSettings}>🚀️</div>
+    return (
+      <span
+        className="settings-icon"
+        onClick={this.toggleSettings}
+        role="img"
+        aria-label="settings-menu-toggle"
+      >
+        🚀️
+      </span>
+    )
   };
 
   toggleSettings = () => {
