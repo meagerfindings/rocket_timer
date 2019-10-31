@@ -4,7 +4,7 @@ import React from "react";
 import { func, number, string } from "prop-types";
 import Countdown from "react-countdown-now";
 
-export default class CountDownDisplay extends React.Component {
+export default class CountdownDisplay extends React.Component {
   static propTypes = {
     class: string,
     time: number,

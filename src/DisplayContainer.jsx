@@ -1,17 +1,18 @@
 import React from "react";
 import MinuteInput from "./MinuteInput";
-import CountDownDisplay from "./CountdownDisplay";
+import CountdownDisplay from "./CountdownDisplay";
 import Countdown from "react-countdown-now";
 
 export default class DisplayContainer extends React.Component {
   state = {
     inputMinutes: 5,
     complete: false,
+    resetMinutes: 3,
   };
 
   render() {
     if (this.state.complete) {
-      const resetTime = Date.now() + (60 *  0.1 * 1000);
+      const resetTime = Date.now() + (60 *  this.state.resetMinutes * 1000);
       return(
         <React.Fragment>
           <b className="timer-done">BLASTOFF</b>
@@ -28,24 +29,27 @@ export default class DisplayContainer extends React.Component {
 
     return (
       <div className="display">
-        <CountDownDisplay
+        <CountdownDisplay
           class="timer"
           onCompletion={this.handleDisplayCompletion}
           time={countDownTime}
         />
-        <MinuteInput onUpdate={this.handleUpdateDisplayCountDown} />
+        <MinuteInput onUpdate={this.handleUpdateDisplayCountdown} label="Minutes to launch"/>
+        <MinuteInput onUpdate={this.handleUpdateResetCountdown} label={"Minutes for Reset"}/>
       </div>
     )
   };
 
-  handleUpdateDisplayCountDown = (e) => {
-    const minutes = Number.parseInt(e.currentTarget.value);
-    this.setState({ inputMinutes: minutes })
+  handleUpdateDisplayCountdown = (e) => {
+    this.setState({ inputMinutes: this.minutesFromInput(e) })
   };
 
-  handleUpdateResetCountDown = (e) => {
-    const minutes = Number.parseInt(e.currentTarget.value);
-    this.setState({ inputMinutes: minutes })
+  handleUpdateResetCountdown = (e) => {
+    this.setState({ resetMinutes: this.minutesFromInput(e) })
+  };
+
+  minutesFromInput = (input) => {
+    return Number.parseInt(input.currentTarget.value);
   };
 
   handleDisplayCompletion = () => {
