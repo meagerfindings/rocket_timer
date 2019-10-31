@@ -15,7 +15,7 @@ export default class DisplayContainer extends React.Component {
       const resetTime = Date.now() + (60 *  this.state.resetMinutes * 1000);
       return(
         <React.Fragment>
-          <b className="timer-done">BLASTOFF</b>
+          <b className="timer-done">BLASTOFF!</b>
           <Countdown
             date={resetTime}
             daysInHours
