@@ -8,6 +8,7 @@ export default class DisplayContainer extends React.Component {
     inputMinutes: 5,
     complete: false,
     resetMinutes: 3,
+    settingsVisible: false,
   };
 
   render() {
@@ -21,6 +22,7 @@ export default class DisplayContainer extends React.Component {
             daysInHours
             onComplete={this.handleResetCompletion}
           />
+          {this.renderSettings(this.handleUpdateDisplayCountdown, this.handleUpdateResetCountdown)}
         </React.Fragment>
       )
     }
@@ -34,10 +36,33 @@ export default class DisplayContainer extends React.Component {
           onCompletion={this.handleDisplayCompletion}
           time={countDownTime}
         />
-        <MinuteInput onUpdate={this.handleUpdateDisplayCountdown} label="Minutes to launch"/>
-        <MinuteInput onUpdate={this.handleUpdateResetCountdown} label={"Minutes for Reset"}/>
+        {this.renderSettings(this.handleUpdateDisplayCountdown, this.handleUpdateResetCountdown)}
       </div>
     )
+  };
+
+  renderSettings = (handleDisplayInput, handleResetInput) => {
+    if (this.state.settingsVisible) {
+      return (
+        <div>
+          {this.renderSettingsIcon()}
+          <MinuteInput onUpdate={handleDisplayInput} label="Minutes for Countdown"/>
+          <br/>
+          <MinuteInput onUpdate={handleResetInput} label={"Minutes for Reset"}/>
+
+        </div>
+      )
+    }
+
+    return this.renderSettingsIcon();
+  };
+
+  renderSettingsIcon = () => {
+    return <div className="settings-icon" onClick={this.toggleSettings}>🚀️</div>
+  };
+
+  toggleSettings = () => {
+    this.setState({ settingsVisible: !this.state.settingsVisible})
   };
 
   handleUpdateDisplayCountdown = (e) => {
