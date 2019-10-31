@@ -8,7 +8,6 @@ export default class CountDownDisplay extends React.Component {
   static propTypes = {
     class: string,
     time: number,
-    label: string,
     onCompletion: func,
   };
 
@@ -24,8 +23,9 @@ export default class CountDownDisplay extends React.Component {
             date={this.props.time}
             daysInHours
             onComplete={this.props.onCompletion}
+            intervalDelay={0}
+            precision={3}
           />
-          <h4>{this.props.label}</h4>
         </div>
     )
   }

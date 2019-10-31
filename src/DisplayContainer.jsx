@@ -1,6 +1,7 @@
 import React from "react";
 import MinuteInput from "./MinuteInput";
 import CountDownDisplay from "./CountdownDisplay";
+import Countdown from "react-countdown-now";
 
 export default class DisplayContainer extends React.Component {
   state = {
@@ -9,33 +10,49 @@ export default class DisplayContainer extends React.Component {
   };
 
   render() {
-    const completedClass = this.state.complete === true ? "timer-done" : "timer";
-    const label = this.state.complete === true ? "BLASTOFF" : null;
-    const countDownTime = this.state.complete === true ?
-      Date.now()
-      :
-      Date.now() + (60 * this.state.inputMinutes * 1000);
+    if (this.state.complete) {
+      const resetTime = Date.now() + (60 *  0.1 * 1000);
+      return(
+        <React.Fragment>
+          <b className="timer-done">BLASTOFF</b>
+          <Countdown
+            date={resetTime}
+            daysInHours
+            onComplete={this.handleResetCompletion}
+          />
+        </React.Fragment>
+      )
+    }
 
+    const countDownTime = Date.now() + (60 * this.state.inputMinutes * 1000);
 
     return (
-      <React.Fragment>
+      <div className="display">
         <CountDownDisplay
-          class={completedClass}
-          label={label}
-          onCompletion={this.handleCompletion}
+          class="timer"
+          onCompletion={this.handleDisplayCompletion}
           time={countDownTime}
         />
-        <MinuteInput onUpdate={this.handleUpdate} />
-      </React.Fragment>
+        <MinuteInput onUpdate={this.handleUpdateDisplayCountDown} />
+      </div>
     )
   };
 
-  handleUpdate = (e) => {
+  handleUpdateDisplayCountDown = (e) => {
     const minutes = Number.parseInt(e.currentTarget.value);
     this.setState({ inputMinutes: minutes })
   };
 
-  handleCompletion = () => {
+  handleUpdateResetCountDown = (e) => {
+    const minutes = Number.parseInt(e.currentTarget.value);
+    this.setState({ inputMinutes: minutes })
+  };
+
+  handleDisplayCompletion = () => {
     this.setState({ complete: true })
   };
+
+  handleResetCompletion = () => {
+    this.setState({ complete: false })
+  }
 };

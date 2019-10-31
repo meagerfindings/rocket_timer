@@ -1,20 +1,27 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #09d3ac;
+    color: #09d3ac;
+}
+
+.display {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
 }
 
 .timer {
@@ -25,13 +32,14 @@
 }
 
 .timer-done {
-  padding-top: 200px;
-  font-family: Orbitron, serif;
-  color: red;
-  font-size: 16px;
-  font-size: 12vw;
+    font-family: Arial, serif;
+    color: red;
+    font-size: 16px;
+    font-size: 12vw;
+    border: 10px;
+    border-color: cornflowerblue;
 }
 
 .launch-label {
-  margin-top: 600px;
+    /*margin-top: 600px;*/
 }
