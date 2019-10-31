@@ -17,26 +17,21 @@
     color: #09d3ac;
 }
 
-.display {
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*flex-direction: column;*/
-    /*align-items: center;*/
-}
-
 .timer {
-  padding-top: 200px;
-  font-family: Orbitron, serif;
-  font-size: 16px;
-  font-size: 12vw;
+    font-size: 50vh;
+    font-family:'digital-clock-font';
 }
 
 .timer-done {
     font-family: Arial, serif;
     color: red;
-    font-size: 16px;
-    font-size: 12vw;
+    font-size: 15vw;
     animation: blinker 0.75s linear infinite;
+}
+
+@font-face{
+    font-family:'digital-clock-font';
+    src: url('./digital-7.ttf');
 }
 
 @keyframes blinker {
